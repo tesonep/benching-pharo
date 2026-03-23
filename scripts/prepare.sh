@@ -32,4 +32,4 @@ popd
 ./scripts/getVMs
 
 # Prepare output scripts
-mkdir images
+mkdir plots
