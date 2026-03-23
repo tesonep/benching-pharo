@@ -1,5 +1,5 @@
 default_experiment: benchmarks
-default_data_file: 'honeyGinger.data'
+default_data_file: './data/honeyGinger.data'
 
 runs:
     max_invocation_time: 6000
@@ -18,15 +18,15 @@ benchmark_suites:
 
 executors:
     pharo-10:
-        path: './hg/'
-        executable: "../../../git-repos/pharo-vm/pharo-10/build/dist/Pharo.app/Contents/MacOS/Pharo"
+        path: './veritas/hg/'
+        executable: "../../vms/pharo-10/pharo"
         env:
-            HOME: "/Users/admin"
+            HOME: "/tmp/"
     pharo-12:
-        path: './hg/'
-        executable: "../../../git-repos/pharo-vm/pharo-12/build/dist/Pharo.app/Contents/MacOS/Pharo"
+        path: './veritas/hg/'
+        executable: "../../vms/pharo-12/pharo"
         env:
-            HOME: "/Users/admin"
+            HOME: "/tmp/"
 
 
 # define the benchmarks to be executed for a re-executable benchmark run
