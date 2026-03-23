@@ -1,0 +1,55 @@
+default_experiment: benchmarks
+default_data_file: './data/pharo.data'
+
+runs:
+    max_invocation_time: 6000
+    min_iteration_time: 1
+
+benchmark_suites:
+    PharoCore:
+        # Another adapter could be PlainSecondsLog
+        gauge_adapter: Time
+        command: |-
+            Pharo.image eval "'%(benchmark)s' asPackage testSuite run"
+        input_sizes: [1]
+        invocations: 30
+        benchmarks:
+            - 'Kernel-Tests'
+            - 'Kernel-Extended-Tests'
+            - 'OpalCompiler-Tests'
+            - 'ThreadedFFI-Tests'
+
+    Empty:
+        # Another adapter could be PlainSecondsLog
+        gauge_adapter: Time
+        command: |-
+            Pharo.image eval "'%(benchmark)s'"
+        input_sizes: [1]
+        invocations: 30
+        benchmarks:
+            - 'ImageLoading'
+
+executors:
+    pharo-10:
+        path: './'
+        executable: "../../git-repos/pharo-vm/pharo-10/build/dist/Pharo.app/Contents/MacOS/Pharo"
+        env:
+            HOME: "/Users/admin"
+    pharo-12:
+        path: './'
+        executable: "../../git-repos/pharo-vm/pharo-12/build/dist/Pharo.app/Contents/MacOS/Pharo"
+        env:
+            HOME: "/Users/admin"
+
+
+# define the benchmarks to be executed for a re-executable benchmark run
+experiments:
+    benchmarks:
+        description: Pharo VM Benchmarks
+        suites:
+            - PharoCore
+            - Empty
+        executions:
+            - pharo-10
+            - pharo-12
+

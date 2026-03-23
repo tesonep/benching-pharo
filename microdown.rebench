@@ -1,0 +1,40 @@
+default_experiment: benchmarks
+default_data_file: 'microdown.data'
+
+runs:
+    max_invocation_time: 6000
+    min_iteration_time: 1
+
+benchmark_suites:
+    Microdown:
+        # Another adapter could be PlainSecondsLog
+        gauge_adapter: Time
+        command: |-
+            micro.image eval "%(benchmark)s new run. 1"
+        input_sizes: [1]
+        invocations: 30
+        benchmarks:
+            - 'VeritasMicrodown'
+
+executors:
+    pharo-10:
+        path: './micro/'
+        executable: "../../../git-repos/pharo-vm/pharo-10/build/dist/Pharo.app/Contents/MacOS/Pharo"
+        env:
+            HOME: "/Users/admin"
+    pharo-12:
+        path: './micro/'
+        executable: "../../../git-repos/pharo-vm/pharo-12/build/dist/Pharo.app/Contents/MacOS/Pharo"
+        env:
+            HOME: "/Users/admin"
+
+
+# define the benchmarks to be executed for a re-executable benchmark run
+experiments:
+    benchmarks:
+        description: Pharo VM Benchmarks
+        suites:
+            - Microdown
+        executions:
+            - pharo-10
+            - pharo-12
