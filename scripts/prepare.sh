@@ -5,6 +5,8 @@
 set -x 
 set -e
 
+SCRIPT_DIR=$(readlink -f $(dirname -- "${BASH_SOURCE[0]}"))
+
 git clone https://github.com/tesonep/PharoVeritasBenchSuite.git
 
 # Create Data output directory
@@ -29,7 +31,7 @@ pushd veritas
 popd
 
 # Get benchmarked vms
-./scripts/getVMs
+$SCRIPT_DIR/getVMs
 
 # Prepare output scripts
 mkdir plots

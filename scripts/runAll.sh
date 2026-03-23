@@ -2,11 +2,13 @@
 
 set -x 
 
-rebench -D bloc.rebench
-rebench -D pharo.rebench
-rebench -D cormas.rebench
-rebench -D dataFrame.rebench
-rebench -D honeyGinger.rebench
-rebench -D microdown.rebench
+SCRIPT_DIR=$(readlink -f $(dirname -- "${BASH_SOURCE[0]}"))
 
-python ./scripts/generatePlots.py
+rebench -D $SCRIPT_DIR/../bloc.rebench
+rebench -D $SCRIPT_DIR/../pharo.rebench
+rebench -D $SCRIPT_DIR/../cormas.rebench
+rebench -D $SCRIPT_DIR/../dataFrame.rebench
+rebench -D $SCRIPT_DIR/../honeyGinger.rebench
+rebench -D $SCRIPT_DIR/../microdown.rebench
+
+python $SCRIPT_DIR/generatePlots.py
