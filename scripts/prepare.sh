@@ -31,7 +31,7 @@ pushd veritas
 popd
 
 # Get benchmarked vms
-$SCRIPT_DIR/getVMs
+$SCRIPT_DIR/getVMs.sh
 
 # Prepare output scripts
 mkdir plots
