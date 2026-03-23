@@ -13,7 +13,7 @@ Then install the dependencies: rebench and matplotlib.
 pip install rebench
 pip install matplotlib
 ```
-#To Run
+# To Run
 
 Run just do: 
 
